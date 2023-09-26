@@ -37,8 +37,50 @@ def remoeDuplicate(self,nums):
     ```
     
 ### 左右指针
-#### 二分查找    
+#### 二分查找
+#### nSum
 - 167. 两数之和
+```python
+def twoSum(self, numbers, target):
+        """
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        left = 0
+        right = len(numbers)-1
+        while left<right:
+            if numbers[left]+numbers[right]>target:
+                right-=1
+            elif numbers[left]+numbers[right]<target:
+                left+=1
+            else:
+                return [left+1,right+1]
+        return None
+```
+#### 反转数组
+
+#### 回文串判断 
+- 5. 最长回文串 -> 字符串
+    - 最长问题先从最短找起，目标字符串的长度不确定时 可能是奇数也可能是偶数，因此左右指针不再是从两头找起，而是从中心扩散
+    ```python
+    def longestPlaindrome(s):
+        res = ""
+        for i in range(len(s)):
+            s1 = helper(s,i,i) //odd
+            s2 = helper(s,i,i+1) //even
+            res = res if len(res)>len(s1) else s1
+            res = res if len(res)>len(s2) else s2
+        return res
+    def helper(s,cen1,cen2):
+        while cen1>=0 and cen2<len(s) and s[cen1]==s[cen2]:
+            cen1-=1
+            cen2+=1
+        return s[cen1+1:cen2]
+    ```
+    
+---
+
 ## 链表
 ### 快慢指针
 - 83. 删除排序链表中的重复元素 -> 去重后的链表
