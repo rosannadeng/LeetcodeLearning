@@ -39,7 +39,7 @@ def remoeDuplicate(self,nums):
 ### 左右指针
 #### 二分查找
 #### nSum
-- 167. 两数之和
+- 167. 两数之和 -> 返回index
 ```python
 def twoSum(self, numbers, target):
         """
@@ -57,6 +57,75 @@ def twoSum(self, numbers, target):
             else:
                 return [left+1,right+1]
         return None
+```
+
+ **如果把结果改为 不重复的value呢？**
+- 排序+左右指针
+
+*通过修改while loop 跳过所有重复元素即可*
+
+```python
+def twoSumTarget(nums, target):
+    # nums必须有序
+    nums.sort()
+    lo, hi = 0, len(nums) - 1
+    res = []
+    while lo < hi:
+        s = nums[lo] + nums[hi]
+        left, right = nums[lo], nums[hi]
+        if s < target:
+            while lo < hi and nums[lo] == left:
+                lo += 1
+        elif s > target:
+            while lo < hi and nums[hi] == right:
+                hi -= 1
+        else:
+            res.append([left, right])
+            while lo < hi and nums[lo] == left:
+                lo += 1
+            while lo < hi and nums[hi] == right:
+                hi -= 1
+    return res
+```
+由于排序算法时间复杂度更新为 -> O(NlogN)
+- Nsum问题的本质就是不断对指针开始位置进行更新并对target进行迭代 从target-> target-nums[i] -> target-nums[i]-nums[j]->...
+```python
+def nSumTarget(nums,n,start,target):
+    sz = len(nums)
+    res = []
+    # 至少是 2Sum，且数组大小不应该小于 n
+    if n < 2 or sz < n:
+        return res
+    # 2Sum 是 base case
+    if n == 2:
+        # 双指针那一套操作
+        lo, hi = start, sz - 1
+        while lo < hi:
+            sum = nums[lo] + nums[hi]
+            left, right = nums[lo], nums[hi]
+            if sum < target:
+                while lo < hi and nums[lo] == left:
+                    lo += 1
+            elif sum > target:
+                while lo < hi and nums[hi] == right:
+                    hi -= 1
+            else:
+                res.append([left, right])
+                while lo < hi and nums[lo] == left:
+                    lo += 1
+                while lo < hi and nums[hi] == right:
+                    hi -= 1
+    else:
+        # n > 2 时，递归计算 (n-1)Sum 的结果
+        for i in range(start, sz):
+            sub = nSumTarget(nums, n - 1, i + 1, target - nums[i])
+            for arr in sub:
+                # (n-1)Sum 加上 nums[i] 就是 nSum
+                arr.append(nums[i])
+                res.append(arr)
+            while i < sz - 1 and nums[i] == nums[i + 1]:
+                i += 1
+    return res
 ```
 #### 反转数组
 
@@ -83,7 +152,7 @@ def twoSum(self, numbers, target):
 
 ## 链表
 ### 快慢指针
-- 83. 删除排序链表中的重复元素 -> 去重后的链表
+- 83.删除排序链表中的重复元素 -> 去重后的链表
     - 和26题思路一致，区别是使用pointer替换赋值
     ```python
     def deleteDuplicate(self,head):
