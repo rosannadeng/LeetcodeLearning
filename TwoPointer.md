@@ -1,10 +1,10 @@
 双指针
 ===
 ## 数组
-### 快慢指针
+#### 快慢指针
 通常使用于原地修改数组和通过扩大或缩小窗口来解决的问题
 
-26. 删除有序数组中的重复项 -> 返回最新数组长度
+$26.$ 删除有序数组中的重复项 -> 返回最新数组长度
 - 当快指针指向不同元素时 移动慢指针 并对位置进行数值覆盖
 - 否则移动快指针
 ```python
@@ -21,7 +21,7 @@ def remoeDuplicate(self,nums):
     return i+1
 ```
 
-283. 移动零 -> None
+$283.$ 移动零 -> None
 - 思路一致，增加的是将slow指针后的元素改为0
     ```python
     def moveZero(self,nums):
@@ -40,9 +40,9 @@ def remoeDuplicate(self,nums):
     
 ### 左右指针
 #### 二分查找
-#### nSum
+- nSum
 
-167. 两数之和 -> 返回index
+    $167.$ 两数之和 -> 返回index
 ```python
 def twoSum(self, numbers, target):
         """
@@ -63,9 +63,9 @@ def twoSum(self, numbers, target):
 ```
 
  **如果把结果改为 不重复的value呢？**
-- 排序+左右指针
-
-*通过修改while loop 跳过所有重复元素即可*
+    - 排序+左右指针
+    
+    *通过修改while loop 跳过所有重复元素即可*
 
 ```python
 def twoSumTarget(nums, target):
@@ -90,7 +90,8 @@ def twoSumTarget(nums, target):
                 hi -= 1
     return res
 ```
-由于排序算法时间复杂度更新为 -> O(NlogN)
+
+*由于排序算法时间复杂度更新为 -> O(NlogN)*
 
 - Nsum问题的本质就是不断对指针开始位置进行更新并对target进行迭代 从target-> target-nums[i] -> target-nums[i]-nums[j]->...
 
@@ -132,13 +133,14 @@ def nSumTarget(nums,n,start,target):
                 i += 1
     return res
 ```
-#### 反转数组
+- 反转数组 TODO
 
-#### 回文串判断 
+- 回文串判断 
 
-5. 最长回文串 -> 字符串
+    $5.$ 最长回文串 -> 字符串
 
-- 最长问题先从最短找起，目标字符串的长度不确定时 可能是奇数也可能是偶数，因此左右指针不再是从两头找起，而是从中心扩散
+    - 最长问题先从最短找起，目标字符串的长度不确定时 可能是奇数也可能是偶数，因此左右指针不再是从两头找起，而是从中心扩散
+    - 
     ```python
     def longestPlaindrome(s):
         res = ""
@@ -160,7 +162,7 @@ def nSumTarget(nums,n,start,target):
 ## 链表
 ### 快慢指针
 
-83.删除排序链表中的重复元素 -> 去重后的链表
+$83.$ 删除排序链表中的重复元素 -> 去重后的链表
 - 和26题思路一致，区别是使用pointer替换赋值
     
     ```python
