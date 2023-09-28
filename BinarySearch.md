@@ -6,6 +6,8 @@
 
 * [三. 寻找右侧边界](#寻找右侧边界)
 
+* 代表题：LC 34、 LC 704、 LCR53
+
 ## 寻找一个数
 ```python
 def binarySearch(nums,target):
