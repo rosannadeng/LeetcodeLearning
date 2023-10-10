@@ -159,22 +159,3 @@ def nSumTarget(nums,n,start,target):
     
 ---
 
-## 链表
-### 快慢指针
-
-$83.$ 删除排序链表中的重复元素 -> 去重后的链表
-- 和26题思路一致，区别是使用pointer替换赋值
-    
-    ```python
-    def deleteDuplicate(self,head):
-        if not head:
-            return None
-        slow,fast = head,head
-        while fast:
-            if fast.val!=slow.val:
-                slow.next = fast
-                slow = slow.next
-            fast = fast.next
-        slow.next = None #去尾，断开与后面元素的连接
-        return head
-    ```
